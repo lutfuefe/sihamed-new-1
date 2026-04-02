@@ -1,0 +1,162 @@
+.stats {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    #1a3a5c 0%,
+    #0d2840 50%,
+    #0a1f33 100%
+  );
+}
+
+.bgOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at 70% 20%,
+    rgba(30, 80, 130, 0.3) 0%,
+    transparent 50%
+  );
+}
+
+.planeDecor {
+  position: absolute;
+  top: 2rem;
+  right: 5%;
+  width: 200px;
+  color: rgba(255, 255, 255, 0.15);
+  animation: flyAcross 20s linear infinite;
+}
+
+@keyframes flyAcross {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.statCard {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.statCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.statIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  filter: grayscale(0.3);
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.statSuffix {
+  font-size: 0.6em;
+  color: var(--accent-gold);
+  margin-left: 2px;
+}
+
+.statLabel {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .statCard {
+    padding: 1.5rem 1rem;
+  }
+
+  .statIcon {
+    font-size: 2rem;
+  }
+
+  .bgImage {
+    background-attachment: scroll;
+  }
+}

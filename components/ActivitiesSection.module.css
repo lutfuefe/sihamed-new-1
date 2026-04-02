@@ -1,0 +1,245 @@
+.activities {
+  background: var(--neutral-100);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Featured - Full Width */
+.featured {
+  background: linear-gradient(135deg, #0a1628 0%, #1a2d4a 100%);
+  padding: 5rem 0 4rem;
+}
+
+.featuredLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #cc3333;
+  margin-bottom: 1.5rem;
+}
+
+.labelLine {
+  width: 2rem;
+  height: 2px;
+  background: currentColor;
+}
+
+.featuredCard {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 2.5rem;
+}
+
+.featuredDate {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #d4a84b;
+}
+
+.day {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.month {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.featuredContent {
+  flex: 1;
+}
+
+.featuredTitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.featuredDesc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+}
+
+.featuredBtn {
+  flex-shrink: 0;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  transition: all var(--transition-base);
+}
+
+.featuredBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Gallery */
+.gallery {
+  padding: 4rem 0;
+  background: var(--neutral-100);
+}
+
+.galleryLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary-600);
+  margin-bottom: 1.5rem;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.filterBtn {
+  padding: 0.625rem 1.25rem;
+  background: white;
+  color: var(--neutral-600);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--neutral-200);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.filterBtn:hover {
+  border-color: var(--primary-300);
+  color: var(--primary-600);
+}
+
+.filterBtn.active {
+  background: var(--primary-500);
+  color: white;
+  border-color: var(--primary-500);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.card:hover .cardOverlay {
+  opacity: 1;
+}
+
+.cardCategory {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--primary-500);
+  color: white;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featuredCard {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .featuredCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    justify-content: center;
+  }
+}

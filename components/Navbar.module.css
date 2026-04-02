@@ -1,0 +1,247 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.25rem 0;
+  transition: all var(--transition-base);
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  transition: color var(--transition-base);
+}
+
+.navbar.scrolled .logo {
+  color: var(--neutral-900);
+}
+
+.logoImage {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoTitle {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+.logoSubtitle {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Navigation Links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.navLink {
+  position: relative;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color var(--transition-base);
+}
+
+.navbar.scrolled .navLink {
+  color: var(--neutral-700);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gold);
+  transition: width var(--transition-base);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navLink:hover {
+  color: white;
+}
+
+.navbar.scrolled .navLink:hover {
+  color: var(--primary-600);
+}
+
+/* CTA Button */
+.ctaButton {
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--neutral-900);
+  background: var(--accent-gold);
+  border-radius: 100px;
+  transition: all var(--transition-base);
+}
+
+.ctaButton:hover {
+  background: var(--accent-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 168, 75, 0.4);
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobileMenuBtn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+.navbar.scrolled .mobileMenuBtn span {
+  background: var(--neutral-900);
+}
+
+.mobileMenuBtn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobileMenuBtn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobileMenuBtn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mobileMenu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileLink {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--neutral-800);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--neutral-200);
+  transition: color var(--transition-base);
+}
+
+.mobileLink:hover {
+  color: var(--primary-600);
+}
+
+.mobileCta {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--neutral-900);
+  background: var(--accent-gold);
+  border-radius: 100px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .navLinks {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks,
+  .ctaButton {
+    display: none;
+  }
+
+  .mobileMenuBtn {
+    display: flex;
+  }
+
+  .logoSubtitle {
+    display: none;
+  }
+}
