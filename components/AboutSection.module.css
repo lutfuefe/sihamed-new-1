@@ -62,7 +62,49 @@
 }
 
 .description:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.scopeBlock {
   margin-bottom: 2.5rem;
+  padding: 1.75rem 1.5rem;
+  background: #fff;
+  border: 1px solid var(--primary-100);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--accent-gold);
+}
+
+.scopeTitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 700;
+  color: var(--neutral-900);
+  line-height: 1.35;
+  margin: 0 0 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--primary-100);
+}
+
+.scopeList {
+  margin: 0;
+  padding-left: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  list-style-type: decimal;
+}
+
+.scopeItem {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--neutral-600);
+  padding-left: 0.35rem;
+}
+
+.scopeList .scopeItem::marker {
+  color: var(--primary-600);
+  font-weight: 600;
 }
 
 /* Features */
@@ -165,10 +207,17 @@
   padding: 0;
   border-radius: 1.75rem;
   border: 1px solid var(--primary-200);
-  background: linear-gradient(180deg, #ffffff 0%, var(--primary-50) 100%);
+  background: linear-gradient(180deg, var(--primary-50) 0%, #ffffff 100%);
   box-shadow: var(--shadow-lg), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
   overflow: hidden;
   animation: digitalFloat 8s ease-in-out infinite;
+}
+
+.digitalGraphic {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  background: var(--primary-50);
 }
 
 .digitalBackdrop {
@@ -176,6 +225,32 @@
   width: 100%;
   height: auto;
   vertical-align: top;
+}
+
+.digitalLogoSlot {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  transform: translate(-50%, -50%);
+  width: min(52%, 168px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.digitalLogoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .digitalContent {
@@ -356,6 +431,10 @@
   .container {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+
+  .scopeBlock {
+    padding: 1.25rem 1rem;
   }
 
   .visual {

@@ -2,6 +2,22 @@
 
 import styles from './AboutSection.module.css';
 
+const DERNEK_CALISMA_KONULARI = [
+  'Faaliyetlerinin etkinleştirilmesi ve geliştirilmesi için araştırmalar yapmak,',
+  'Kurs, seminer, konferans ve panel gibi eğitim çalışmaları düzenlemek,',
+  'Amacın gerçekleştirilmesi için gerekli olan her türlü bilgi, belge, doküman ve yayınları temin etmek, dokümantasyon merkezi oluşturmak, çalışmalarını duyurmak için amaçları doğrultusunda gazete, dergi, kitap ve bülten gibi yayınlar çıkarmak,',
+  'Amacın gerçekleştirilmesi için sağlıklı bir çalışma ortamını sağlamak, her türlü teknik araç ve gereci, demirbaş ve kırtasiye malzemelerini temin etmek,',
+  'Gerekli izinler alınmak şartıyla yardım toplama faaliyetlerinde bulunmak ve yurt içinden ve yurt dışından bağış kabul etmek,',
+  'Tüzük amacının gerçekleştirilmesi için ihtiyaç duyulan gelirleri temin etmek amacıyla iktisadi, ticari ve sanayi işletmeler kurmak ve işletmek,',
+  'Üyelerinin yararlanmaları ve boş zamanlarını değerlendirebilmeleri için lokal açmak, sosyal ve kültürel tesisler kurmak ve bunları tefriş etmek,',
+  'Üyeleri arasında beşeri münasebetlerin geliştirilmesi ve devam ettirilmesi için yemekli toplantılar, konser, balo, tiyatro, sergi, spor, gezi ve eğlenceli etkinlikler vb. düzenlemek veya üyelerinin bu tür etkinliklerden yararlanmalarını sağlamak,',
+  'Dernek faaliyetleri için ihtiyaç duyulan taşınır, taşınmaz mal satın almak, satmak, kiralamak, kiraya vermek ve taşınmazlar üzerinde aynı hak tesis etmek,',
+  'Amacın gerçekleştirilmesi için gerek görülmesi durumunda yurt içinde ve yurt dışında vakıf kurmak, federasyon kurmak veya kurulu bir federasyona katılmak, gerekli izin alınarak derneklerin kurabileceği tesisleri kurmak,',
+  'Uluslararası faaliyette bulunmak, yurt dışındaki dernek veya kuruluşlara üye olmak ve bu kuruluşlarla ortak çalışmalar yapmak veya yardımlaşmak,',
+  'Amacın gerçekleştirilmesi için gerek görülmesi halinde, 5072 sayılı Dernek ve Vakıfların Kamu Kurum ve Kuruluşları ile İlişkilerine Dair Kanun hükümleri saklı kalmak üzere, kamu kurum ve kuruluşları ile görev alanlarına giren konularda ortak projeler yürütmek,',
+  'Dernek üyelerinin yiyecek, giyecek gibi zaruri ihtiyaç maddelerini ve diğer mal ve hizmetlerle kısa vadeli kredi ihtiyaçlarını karşılamak amacıyla sandık kurmak.',
+];
+
 export default function AboutSection() {
   const features = [
     {
@@ -66,6 +82,19 @@ export default function AboutSection() {
             temel misyonumuzdur.
           </p>
 
+          <div className={styles.scopeBlock}>
+            <h3 className={styles.scopeTitle}>
+              Dernekçe Sürdürülecek Çalışma Konuları ve Biçimleri
+            </h3>
+            <ol className={styles.scopeList}>
+              {DERNEK_CALISMA_KONULARI.map((madde, index) => (
+                <li key={index} className={styles.scopeItem}>
+                  {madde}
+                </li>
+              ))}
+            </ol>
+          </div>
+
           <div className={styles.features}>
             {features.map((feature, index) => (
               <div key={index} className={styles.featureItem}>
@@ -91,58 +120,56 @@ export default function AboutSection() {
         {/* Right — dijital marka paneli (vektör) */}
         <div className={styles.visual}>
           <figure className={styles.digitalPanel}>
-            <svg
-              className={styles.digitalBackdrop}
-              viewBox="0 0 320 240"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden
-            >
-              <defs>
-                <linearGradient id="aboutBlue" x1="0" y1="0" x2="320" y2="240">
-                  <stop stopColor="#0066cc" stopOpacity="0.1" />
-                  <stop offset="1" stopColor="#004080" stopOpacity="0.03" />
-                </linearGradient>
-                <linearGradient id="aboutGold" x1="0" y1="0" x2="1" y2="1">
-                  <stop stopColor="#d4a84b" />
-                  <stop offset="1" stopColor="#e8c77b" />
-                </linearGradient>
-                <linearGradient id="aboutStroke" x1="160" y1="32" x2="160" y2="208">
-                  <stop stopColor="#0066cc" stopOpacity="0.4" />
-                  <stop offset="1" stopColor="#0052a3" stopOpacity="0.18" />
-                </linearGradient>
-              </defs>
-              <rect width="320" height="240" fill="url(#aboutBlue)" />
-              <circle cx="160" cy="118" r="102" stroke="url(#aboutStroke)" strokeWidth="1" />
-              <circle
-                cx="160"
-                cy="118"
-                r="102"
-                stroke="url(#aboutGold)"
-                strokeWidth="1.5"
-                strokeDasharray="6 14"
-                strokeLinecap="round"
-                opacity="0.85"
-              />
-              <circle cx="160" cy="118" r="78" stroke="#cce0f5" strokeWidth="1" opacity="0.95" />
-              <path
-                d="M64 52h24M64 52v24M256 52h-24M256 52v24M64 184h24M64 184v-24M256 184h-24M256 184v-24"
-                stroke="#0066cc"
-                strokeWidth="2"
-                strokeLinecap="round"
-                opacity="0.22"
-              />
-              <g transform="translate(136 92) scale(1.85)">
-                <path
-                  d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"
-                  fill="url(#aboutGold)"
-                  opacity="0.95"
+            <div className={styles.digitalGraphic}>
+              <svg
+                className={styles.digitalBackdrop}
+                viewBox="0 0 320 240"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden
+              >
+                <defs>
+                  <linearGradient id="aboutGold" x1="0" y1="0" x2="1" y2="1">
+                    <stop stopColor="#d4a84b" />
+                    <stop offset="1" stopColor="#e8c77b" />
+                  </linearGradient>
+                  <linearGradient id="aboutStroke" x1="160" y1="32" x2="160" y2="208">
+                    <stop stopColor="#0066cc" stopOpacity="0.4" />
+                    <stop offset="1" stopColor="#0052a3" stopOpacity="0.18" />
+                  </linearGradient>
+                </defs>
+                <rect width="320" height="240" fill="none" />
+                <circle cx="160" cy="118" r="102" stroke="url(#aboutStroke)" strokeWidth="1" />
+                <circle
+                  cx="160"
+                  cy="118"
+                  r="102"
+                  stroke="url(#aboutGold)"
+                  strokeWidth="1.5"
+                  strokeDasharray="6 14"
+                  strokeLinecap="round"
+                  opacity="0.85"
                 />
-              </g>
-              <circle cx="160" cy="200" r="2.5" fill="#d4a84b" opacity="0.55" />
-              <circle cx="142" cy="200" r="1.8" fill="#0066cc" opacity="0.3" />
-              <circle cx="178" cy="200" r="1.8" fill="#0066cc" opacity="0.3" />
-            </svg>
+                <circle cx="160" cy="118" r="78" stroke="#cce0f5" strokeWidth="1" opacity="0.95" />
+                <path
+                  d="M64 52h24M64 52v24M256 52h-24M256 52v24M64 184h24M64 184v-24M256 184h-24M256 184v-24"
+                  stroke="#0066cc"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  opacity="0.22"
+                />
+              </svg>
+              <div className={styles.digitalLogoSlot}>
+                <img
+                  src="/images/sihamed-logo-mark.png"
+                  alt="SİHAMED resmi logosu"
+                  className={styles.digitalLogoImg}
+                  width={200}
+                  height={200}
+                  decoding="async"
+                />
+              </div>
+            </div>
             <figcaption className={styles.digitalContent}>
               <span className={styles.digitalEyebrow}>EST. 2021</span>
               <span className={styles.digitalName}>SİHAMED</span>

@@ -96,8 +96,10 @@ export default function SihamedVideoBanner() {
           
           <h1 className={styles.title}>
             <span className={styles.titleLine}>SİHAMED</span>
-            <span className={styles.titleLine}>
-              <span className={styles.titleHighlight}>Sivil Havacılık</span> Derneği
+            <span className={styles.titleLineOrg}>
+              <span className={styles.titleHighlight}>Sivil Havacılık Mekaniği</span>
+              <br />
+              Teknik Elemanları Derneği
             </span>
           </h1>
           

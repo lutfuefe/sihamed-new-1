@@ -165,6 +165,18 @@
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
+.titleLineOrg {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3.8vw, 2.35rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.25;
+  max-width: min(100%, 38rem);
+  margin: 0 auto;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
 .titleHighlight {
   color: var(--accent-gold);
   font-style: italic;
