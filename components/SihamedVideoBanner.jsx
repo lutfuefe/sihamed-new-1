@@ -128,11 +128,6 @@ export default function SihamedVideoBanner() {
               <span className={styles.statNumber}>5+</span>
               <span className={styles.statLabel}>Yıllık Tecrübe</span>
             </div>
-            <div className={styles.statDivider}></div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>50+</span>
-              <span className={styles.statLabel}>Eğitim Programı</span>
-            </div>
           </div>
         </div>
 

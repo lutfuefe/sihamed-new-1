@@ -17,8 +17,9 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '#hakkimizda', label: 'Hakkımızda' },
-    { href: '#hizmetler', label: 'Hizmetler' },
     { href: '#haberler', label: 'Haberler' },
+    { href: '#mevzuat', label: 'Mevzuat' },
+    { href: '#yonetim', label: 'Yönetim' },
     { href: '#uyelik', label: 'Üyelik' },
     { href: '#iletisim', label: 'İletişim' },
   ];
@@ -35,7 +36,9 @@ export default function Navbar() {
           />
           <div className={styles.logoText}>
             <span className={styles.logoTitle}>SİHAMED</span>
-            <span className={styles.logoSubtitle}>Sivil Havacılık Derneği</span>
+            <span className={styles.logoSubtitle}>
+              SİVİL HAVACILIK MEKANİĞİ TEKNİK ELEMANLARI DERNEĞİ
+            </span>
           </div>
         </a>
 

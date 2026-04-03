@@ -13,39 +13,6 @@ export default function MembershipSection() {
     experience: ''
   });
 
-  const benefits = [
-    {
-      icon: '🎓',
-      title: 'Ücretsiz Eğitimler',
-      description: 'Part-66, teknik seminerler ve kariyer eğitimlerine ücretsiz katılım'
-    },
-    {
-      icon: '📋',
-      title: 'Mesleki Belgeler',
-      description: 'Üyelik belgesi, referans mektupları ve yeterlilik doğrulama hizmetleri'
-    },
-    {
-      icon: '🤝',
-      title: 'Networking',
-      description: '465+ havacılık profesyoneli ile bağlantı kurma imkanı'
-    },
-    {
-      icon: '⚖️',
-      title: 'Hukuki Destek',
-      description: 'İş hukuku ve mesleki konularda ücretsiz danışmanlık'
-    },
-    {
-      icon: '📰',
-      title: 'Güncel Bilgi',
-      description: 'Sektör haberleri, düzenleme değişiklikleri ve fırsatlardan haberdar olun'
-    },
-    {
-      icon: '🏷️',
-      title: 'İndirimler',
-      description: 'Anlaşmalı kurumlardan özel indirimler ve ayrıcalıklar'
-    }
-  ];
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -76,37 +43,16 @@ export default function MembershipSection() {
         </div>
 
         <div className={styles.content}>
-          {/* Benefits */}
-          <div className={styles.benefits}>
-            <h3 className={styles.benefitsTitle}>Üyelik Avantajları</h3>
-            <div className={styles.benefitsGrid}>
-              {benefits.map((benefit, index) => (
-                <div key={index} className={styles.benefitCard}>
-                  <span className={styles.benefitIcon}>{benefit.icon}</span>
-                  <div>
-                    <h4 className={styles.benefitTitle}>{benefit.title}</h4>
-                    <p className={styles.benefitDesc}>{benefit.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Membership Fee */}
+          <div className={styles.feeSidebar}>
             <div className={styles.feeCard}>
               <div className={styles.feeHeader}>
-                <span className={styles.feeLabel}>Yıllık Üyelik Aidatı</span>
+                <span className={styles.feeLabel}>Aylık Üyelik Aidatı</span>
                 <div className={styles.feePrice}>
                   <span className={styles.feeCurrency}>₺</span>
-                  <span className={styles.feeAmount}>500</span>
-                  <span className={styles.feePeriod}>/yıl</span>
+                  <span className={styles.feeAmount}>250</span>
+                  <span className={styles.feePeriod}>/ay</span>
                 </div>
               </div>
-              <ul className={styles.feeFeatures}>
-                <li>✓ Tüm eğitimlere ücretsiz erişim</li>
-                <li>✓ Networking etkinliklerine katılım</li>
-                <li>✓ Hukuki danışmanlık hizmeti</li>
-                <li>✓ Dijital üyelik kartı</li>
-              </ul>
             </div>
           </div>
 

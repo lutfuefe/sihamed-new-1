@@ -60,6 +60,8 @@
 .logoText {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  max-width: 22rem;
 }
 
 .logoTitle {
@@ -71,10 +73,10 @@
 }
 
 .logoSubtitle {
-  font-size: 0.625rem;
+  font-size: 0.5625rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
   opacity: 0.8;
 }
 

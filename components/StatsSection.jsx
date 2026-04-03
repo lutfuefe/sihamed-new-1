@@ -55,7 +55,6 @@ export default function StatsSection() {
   const stats = [
     { value: 465, suffix: '+', label: 'Aktif Üye', icon: '👥' },
     { value: 5, suffix: '+', label: 'Yıllık Tecrübe', icon: '📅' },
-    { value: 50, suffix: '+', label: 'Eğitim Programı', icon: '🎓' },
     { value: 98, suffix: '%', label: 'Memnuniyet Oranı', icon: '⭐' }
   ];
 

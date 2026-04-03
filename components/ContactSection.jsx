@@ -44,8 +44,9 @@ export default function ContactSection() {
         </svg>
       ),
       title: 'Adres',
-      content: 'Esenboğa Havalimanı\nTerminal Binası, Kat 2\n06750 Çubuk / Ankara',
-      link: 'https://maps.google.com/?q=Esenboga+Airport+Ankara'
+      content:
+        'Devlet Hava Meydanları İşletmesi (DHMİ) Genel Müdürlüğü\nÖzal Bulvarı No:63-1\n06105 Çankaya / Ankara',
+      link: 'https://maps.app.goo.gl/dqDdiFQd2pTEFQry6'
     },
     {
       icon: (
@@ -65,8 +66,8 @@ export default function ContactSection() {
         </svg>
       ),
       title: 'E-posta',
-      content: 'info@sihamed.org.tr\niletisim@sihamed.org.tr',
-      link: 'mailto:info@sihamed.org.tr'
+      content: 'sihamed.dhmi@gmail.com',
+      link: 'mailto:sihamed.dhmi@gmail.com'
     },
     {
       icon: (
@@ -288,7 +289,7 @@ export default function ContactSection() {
         <div className={styles.mapSection}>
           <div className={styles.mapContainer}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3046.5!2d32.9951!3d40.1281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDA3JzQxLjIiTiAzMsKwNTknNDIuNCJF!5e0!3m2!1str!2str!4v1650000000000!5m2!1str!2str"
+              src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s39.9408509,32.8257267!6i17!3m1!1str!5m1!1str"
               width="100%"
               height="400"
               style={{ border: 0 }}
