@@ -43,3 +43,5 @@ coverage/
 *.pid
 *.seed
 *.pid.lock
+
+# Not ignored: public/videos/*.mp4 (hero videoları repoda tutulur)
