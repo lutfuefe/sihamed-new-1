@@ -1,33 +1,86 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './SihamedVideoBanner.module.css';
 
+const HERO_SOURCES_DESKTOP = [
+  { src: '/videos/aviation-hero.mp4', type: 'video/mp4' },
+  { src: '/videos/hero-logo-animated.mp4', type: 'video/mp4' },
+  { src: '/videos/aviation-power-hero.mp4', type: 'video/mp4' },
+];
+
+const HERO_SOURCES_MOBILE = [
+  { src: '/videos/hero-mobil.mp4', type: 'video/mp4' },
+  { src: '/videos/hero-mobil-2.mp4', type: 'video/mp4' },
+];
+
+const MOBILE_MAX_PX = 768;
+
 export default function SihamedVideoBanner() {
-  const videoRef = useRef(null);
+  const videoRef0 = useRef(null);
+  const videoRef1 = useRef(null);
+  const videoRef2 = useRef(null);
+  const videoRefs = [videoRef0, videoRef1, videoRef2];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(err => {
-        console.log('Autoplay blocked:', err);
-      });
-    }
+    const mq = window.matchMedia(`(max-width: ${MOBILE_MAX_PX}px)`);
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
   }, []);
+
+  const sources = isMobile ? HERO_SOURCES_MOBILE : HERO_SOURCES_DESKTOP;
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [isMobile]);
+
+  useEffect(() => {
+    const v = videoRefs[activeIndex].current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+  }, [activeIndex, isMobile]);
+
+  useEffect(() => {
+    if (activeIndex !== 0) videoRef0.current?.pause();
+    if (activeIndex !== 1) videoRef1.current?.pause();
+    if (activeIndex !== 2) videoRef2.current?.pause();
+  }, [activeIndex]);
+
+  const handleVideoEnded = (index) => {
+    videoRefs[index].current?.pause();
+    setActiveIndex((index + 1) % sources.length);
+  };
 
   return (
     <section className={styles.hero} id="hero">
       <div className={styles.videoContainer}>
-        <video
-          ref={videoRef}
-          className={styles.video}
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/videos/aviation-hero.mp4" type="video/mp4" />
-          <source src="/videos/aviation-hero.webm" type="video/webm" />
-        </video>
+        <div className={styles.videoStack}>
+          {sources.map((source, i) => (
+            <div
+              key={source.src}
+              className={`${styles.videoMotion} ${
+                activeIndex === i ? styles.videoLayerVisible : styles.videoLayerHidden
+              }`}
+            >
+              <video
+                ref={videoRefs[i]}
+                className={styles.video}
+                autoPlay={i === 0}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={() => handleVideoEnded(i)}
+              >
+                <source src={source.src} type={source.type} />
+              </video>
+            </div>
+          ))}
+        </div>
 
         {/* Overlay layers */}
         <div className={styles.overlay}></div>
@@ -36,22 +89,10 @@ export default function SihamedVideoBanner() {
         {/* Decorative elements */}
         <div className={styles.gridLines}></div>
 
-        {/* Çapraz uçan uçak animasyonu */}
-        <div className={styles.flyingPlane}>
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-          </svg>
-        </div>
-
         {/* Content */}
         <div className={styles.content}>
           {/* Uçak ikonu ile badge */}
-          <div className={styles.badge}>
-            <svg className={styles.planeIcon} viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-            </svg>
-            Türkiye'nin Havacılık Profesyonelleri
-          </div>
+          <div className={styles.badge}>Türkiye'nin Havacılık Profesyonelleri</div>
           
           <h1 className={styles.title}>
             <span className={styles.titleLine}>SİHAMED</span>
@@ -67,9 +108,6 @@ export default function SihamedVideoBanner() {
 
           <div className={styles.buttons}>
             <a href="#uyelik" className={styles.btnPrimary}>
-              <svg className={styles.btnPlaneIcon} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-              </svg>
               <span>Üye Ol</span>
             </a>
             <a href="#hakkimizda" className={styles.btnSecondary}>
@@ -80,7 +118,7 @@ export default function SihamedVideoBanner() {
           {/* Stats preview */}
           <div className={styles.statsPreview}>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>2500+</span>
+              <span className={styles.statNumber}>465+</span>
               <span className={styles.statLabel}>Aktif Üye</span>
             </div>
             <div className={styles.statDivider}></div>

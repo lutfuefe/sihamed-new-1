@@ -27,7 +27,7 @@ export default function MembershipSection() {
     {
       icon: '🤝',
       title: 'Networking',
-      description: '2500+ havacılık profesyoneli ile bağlantı kurma imkanı'
+      description: '465+ havacılık profesyoneli ile bağlantı kurma imkanı'
     },
     {
       icon: '⚖️',
