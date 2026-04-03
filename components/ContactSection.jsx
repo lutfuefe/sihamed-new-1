@@ -55,8 +55,8 @@ export default function ContactSection() {
         </svg>
       ),
       title: 'Telefon',
-      content: '+90 (312) 590 40 00\n+90 (312) 590 40 01',
-      link: 'tel:+903125904000'
+      content: '0312 204 23 14\n05382334144',
+      link: 'tel:+905382334144'
     },
     {
       icon: (

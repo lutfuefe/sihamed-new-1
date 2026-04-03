@@ -75,7 +75,7 @@ export default function StatsSection() {
         <div className={styles.header}>
           <h2 className={styles.title}>Rakamlarla SİHAMED</h2>
           <p className={styles.subtitle}>
-            Türkiye'nin en büyük sivil havacılık teknik personel topluluğu
+            Türkiye&apos;nin en büyük sivil havacılık makina teknik personel topluluğu
           </p>
         </div>
 

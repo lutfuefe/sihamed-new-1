@@ -3,26 +3,38 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './SihamedVideoBanner.module.css';
 
+/** Masaüstü: 4 klip (4. sırada logo animasyonu), sonra döngü */
 const HERO_SOURCES_DESKTOP = [
   { src: '/videos/aviation-hero.mp4', type: 'video/mp4' },
-  { src: '/videos/hero-logo-animated.mp4', type: 'video/mp4' },
   { src: '/videos/aviation-power-hero.mp4', type: 'video/mp4' },
+  { src: '/videos/video-4.mp4', type: 'video/mp4' },
+  { src: '/videos/hero-logo-animated.mp4', type: 'video/mp4' },
 ];
 
 const HERO_SOURCES_MOBILE = [
   { src: '/videos/hero-mobil.mp4', type: 'video/mp4' },
   { src: '/videos/hero-mobil-2.mp4', type: 'video/mp4' },
+  { src: '/videos/video-mobil.mp4', type: 'video/mp4' },
 ];
 
-const MOBILE_MAX_PX = 768;
+/** 768px ve üzeri = masaüstü. 767px ve altı = mobil. */
+const MOBILE_MAX_PX = 767;
+
+function getIsMobileViewport() {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia(`(max-width: ${MOBILE_MAX_PX}px)`).matches;
+}
 
 export default function SihamedVideoBanner() {
   const videoRef0 = useRef(null);
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
-  const videoRefs = [videoRef0, videoRef1, videoRef2];
+  const videoRef3 = useRef(null);
+  const videoRefs = [videoRef0, videoRef1, videoRef2, videoRef3];
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(getIsMobileViewport);
+  const isMobileRef = useRef(isMobile);
+  isMobileRef.current = isMobile;
 
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${MOBILE_MAX_PX}px)`);
@@ -42,18 +54,23 @@ export default function SihamedVideoBanner() {
     const v = videoRefs[activeIndex].current;
     if (!v) return;
     v.currentTime = 0;
+    v.muted = true;
+    v.volume = 0;
     v.play().catch(() => {});
   }, [activeIndex, isMobile]);
 
   useEffect(() => {
-    if (activeIndex !== 0) videoRef0.current?.pause();
-    if (activeIndex !== 1) videoRef1.current?.pause();
-    if (activeIndex !== 2) videoRef2.current?.pause();
+    videoRefs.forEach((ref, i) => {
+      if (i !== activeIndex) ref.current?.pause();
+    });
   }, [activeIndex]);
 
-  const handleVideoEnded = (index) => {
+  const handleEnded = (index) => {
     videoRefs[index].current?.pause();
-    setActiveIndex((index + 1) % sources.length);
+    const len = isMobileRef.current
+      ? HERO_SOURCES_MOBILE.length
+      : HERO_SOURCES_DESKTOP.length;
+    setActiveIndex((index + 1) % len);
   };
 
   return (
@@ -62,7 +79,7 @@ export default function SihamedVideoBanner() {
         <div className={styles.videoStack}>
           {sources.map((source, i) => (
             <div
-              key={source.src}
+              key={`${i}-${source.src}`}
               className={`${styles.videoMotion} ${
                 activeIndex === i ? styles.videoLayerVisible : styles.videoLayerHidden
               }`}
@@ -74,7 +91,8 @@ export default function SihamedVideoBanner() {
                 muted
                 playsInline
                 preload="auto"
-                onEnded={() => handleVideoEnded(i)}
+                onEnded={() => handleEnded(i)}
+                onError={() => handleEnded(i)}
               >
                 <source src={source.src} type={source.type} />
               </video>
@@ -85,15 +103,14 @@ export default function SihamedVideoBanner() {
         {/* Overlay layers */}
         <div className={styles.overlay}></div>
         <div className={styles.noiseOverlay}></div>
-        
+
         {/* Decorative elements */}
         <div className={styles.gridLines}></div>
 
         {/* Content */}
         <div className={styles.content}>
-          {/* Uçak ikonu ile badge */}
           <div className={styles.badge}>Türkiye'nin Havacılık Profesyonelleri</div>
-          
+
           <h1 className={styles.title}>
             <span className={styles.titleLine}>SİHAMED</span>
             <span className={styles.titleLineOrg}>
@@ -102,9 +119,9 @@ export default function SihamedVideoBanner() {
               Teknik Elemanları Derneği
             </span>
           </h1>
-          
+
           <p className={styles.subtitle}>
-            Gökyüzünün güvenliği, teknik mükemmeliyetle başlar. 
+            Gökyüzünün güvenliği, teknik mükemmeliyetle başlar.
             Havacılık mekaniği alanında Türkiye'nin en güçlü profesyonel ağı.
           </p>
 
@@ -117,7 +134,6 @@ export default function SihamedVideoBanner() {
             </a>
           </div>
 
-          {/* Stats preview */}
           <div className={styles.statsPreview}>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>465+</span>
@@ -131,7 +147,6 @@ export default function SihamedVideoBanner() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className={styles.scrollIndicator}>
           <div className={styles.scrollMouse}>
             <div className={styles.scrollWheel}></div>
@@ -139,7 +154,6 @@ export default function SihamedVideoBanner() {
           <span>Keşfetmek için kaydır</span>
         </div>
 
-        {/* Side decoration */}
         <div className={styles.sideDecor}>
           <div className={styles.decorLine}></div>
           <span>EST. 2021</span>
