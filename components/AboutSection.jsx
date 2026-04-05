@@ -2,22 +2,6 @@
 
 import styles from './AboutSection.module.css';
 
-const DERNEK_CALISMA_KONULARI = [
-  'Faaliyetlerinin etkinleştirilmesi ve geliştirilmesi için araştırmalar yapmak,',
-  'Kurs, seminer, konferans ve panel gibi eğitim çalışmaları düzenlemek,',
-  'Amacın gerçekleştirilmesi için gerekli olan her türlü bilgi, belge, doküman ve yayınları temin etmek, dokümantasyon merkezi oluşturmak, çalışmalarını duyurmak için amaçları doğrultusunda gazete, dergi, kitap ve bülten gibi yayınlar çıkarmak,',
-  'Amacın gerçekleştirilmesi için sağlıklı bir çalışma ortamını sağlamak, her türlü teknik araç ve gereci, demirbaş ve kırtasiye malzemelerini temin etmek,',
-  'Gerekli izinler alınmak şartıyla yardım toplama faaliyetlerinde bulunmak ve yurt içinden ve yurt dışından bağış kabul etmek,',
-  'Tüzük amacının gerçekleştirilmesi için ihtiyaç duyulan gelirleri temin etmek amacıyla iktisadi, ticari ve sanayi işletmeler kurmak ve işletmek,',
-  'Üyelerinin yararlanmaları ve boş zamanlarını değerlendirebilmeleri için lokal açmak, sosyal ve kültürel tesisler kurmak ve bunları tefriş etmek,',
-  'Üyeleri arasında beşeri münasebetlerin geliştirilmesi ve devam ettirilmesi için yemekli toplantılar, konser, balo, tiyatro, sergi, spor, gezi ve eğlenceli etkinlikler vb. düzenlemek veya üyelerinin bu tür etkinliklerden yararlanmalarını sağlamak,',
-  'Dernek faaliyetleri için ihtiyaç duyulan taşınır, taşınmaz mal satın almak, satmak, kiralamak, kiraya vermek ve taşınmazlar üzerinde aynı hak tesis etmek,',
-  'Amacın gerçekleştirilmesi için gerek görülmesi durumunda yurt içinde ve yurt dışında vakıf kurmak, federasyon kurmak veya kurulu bir federasyona katılmak, gerekli izin alınarak derneklerin kurabileceği tesisleri kurmak,',
-  'Uluslararası faaliyette bulunmak, yurt dışındaki dernek veya kuruluşlara üye olmak ve bu kuruluşlarla ortak çalışmalar yapmak veya yardımlaşmak,',
-  'Amacın gerçekleştirilmesi için gerek görülmesi halinde, 5072 sayılı Dernek ve Vakıfların Kamu Kurum ve Kuruluşları ile İlişkilerine Dair Kanun hükümleri saklı kalmak üzere, kamu kurum ve kuruluşları ile görev alanlarına giren konularda ortak projeler yürütmek,',
-  'Dernek üyelerinin yiyecek, giyecek gibi zaruri ihtiyaç maddelerini ve diğer mal ve hizmetlerle kısa vadeli kredi ihtiyaçlarını karşılamak amacıyla sandık kurmak.',
-];
-
 export default function AboutSection() {
   const features = [
     {
@@ -40,7 +24,8 @@ export default function AboutSection() {
         </svg>
       ),
       title: 'Güçlü Ağ',
-      description: '465+ aktif üye ile Türkiye\'nin en büyük havacılık topluluğu.'
+      description:
+        '465 aktif üye ile Türkiye\'nin en donanımlı ve en kapsamlı seyrüsefer teknik personelleri.'
     }
   ];
 
@@ -64,19 +49,6 @@ export default function AboutSection() {
             aralarında yardımlaşmayı sağlamak. Mesleki sorunlarına derneğin imkanları dahilinde
             çözümler aramak amacıyla kurulmuştur.
           </p>
-
-          <div className={styles.scopeBlock}>
-            <h3 className={styles.scopeTitle}>
-              Dernekçe Sürdürülecek Çalışma Konuları ve Biçimleri
-            </h3>
-            <ol className={styles.scopeList}>
-              {DERNEK_CALISMA_KONULARI.map((madde, index) => (
-                <li key={index} className={styles.scopeItem}>
-                  {madde}
-                </li>
-              ))}
-            </ol>
-          </div>
 
           <div className={styles.features}>
             {features.map((feature, index) => (

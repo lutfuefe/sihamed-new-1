@@ -45,14 +45,14 @@ export default function ActivitiesSection() {
       category: 'GENEL SAHA'
     },
     {
-      image: '/images/galeri/genel-saha-2.jpg',
-      title: 'Kompresör Sistemi Kontrolü',
-      category: 'GENEL SAHA'
+      image: '/images/galeri/iklimlendirme-1.jpg',
+      title: 'İklimlendirme',
+      category: 'İKLİMLENDİRME'
     },
     {
-      image: '/images/galeri/genel-saha-3.jpg',
-      title: 'Teknik Ekipman Bakımı',
-      category: 'GENEL SAHA'
+      image: '/images/galeri/iklimlendirme-2.jpg',
+      title: 'Isıtma soğutma sistemleri',
+      category: 'İKLİMLENDİRME'
     }
   ];
 

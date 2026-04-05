@@ -5,7 +5,12 @@ import styles from './TeamSection.module.css';
 export default function TeamSection() {
   const yonetimKurulu = {
     asiller: [
-      { name: 'Hasan Bozkurt', role: 'Başkan', initials: 'HB' },
+      {
+        name: 'Hasan Bozkurt',
+        role: 'Başkan',
+        initials: 'HB',
+        photo: '/images/hasan-bozkurt-baskan.png'
+      },
       { name: 'Veli Özkan Serim', role: 'Başkan Yardımcısı', initials: 'VÖS' },
       { name: 'Erdem Aktaş', role: 'Sayman', initials: 'EA' },
       { name: 'Zekeriya Selvi', role: 'Genel Sekreter', initials: 'ZS' },
@@ -60,7 +65,17 @@ export default function TeamSection() {
             {yonetimKurulu.asiller.map((member, index) => (
               <div key={index} className={`${styles.card} ${index === 0 ? styles.president : ''}`}>
                 <div className={styles.avatar}>
-                  <span>{member.initials}</span>
+                  {member.photo ? (
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className={styles.avatarPhoto}
+                      width={160}
+                      height={160}
+                    />
+                  ) : (
+                    <span>{member.initials}</span>
+                  )}
                 </div>
                 <div className={styles.info}>
                   <h4 className={styles.name}>{member.name}</h4>
