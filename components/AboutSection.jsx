@@ -25,7 +25,7 @@ export default function AboutSection() {
       ),
       title: 'Güçlü Ağ',
       description:
-        '465 aktif üye ile Türkiye\'nin en donanımlı ve en kapsamlı seyrüsefer teknik personelleri.'
+        '475+ aktif üye ile Türkiye\'nin en donanımlı ve en kapsamlı seyrüsefer teknik personelleri.'
     }
   ];
 

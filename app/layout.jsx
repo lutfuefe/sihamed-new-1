@@ -1,10 +1,15 @@
 import './globals.css';
 
 export const metadata = {
+  metadataBase: new URL('https://sihamed.org.tr'),
   title: 'SİHAMED - Sivil Havacılık Mekaniği Teknik Elemanları Derneği',
   description: 'Türkiye\'nin sivil havacılık mekaniği alanında faaliyet gösteren teknik elemanlarını bir araya getiren profesyonel meslek kuruluşu.',
   keywords: 'sivil havacılık, uçak bakım, teknik eleman, havacılık mekaniği, SHGM, Part-66, dernek',
   authors: [{ name: 'SİHAMED' }],
+  icons: {
+    icon: [{ url: '/icon.png', type: 'image/png' }],
+    apple: [{ url: '/apple-icon.png', type: 'image/png' }],
+  },
   openGraph: {
     title: 'SİHAMED - Sivil Havacılık Mekaniği Teknik Elemanları Derneği',
     description: 'Türkiye\'nin sivil havacılık mekaniği alanında faaliyet gösteren teknik elemanlarını bir araya getiren profesyonel meslek kuruluşu.',
