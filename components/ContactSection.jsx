@@ -45,7 +45,7 @@ export default function ContactSection() {
       ),
       title: 'Adres',
       content:
-        'Devlet Hava Meydanları İşletmesi (DHMİ) Genel Müdürlüğü\nÖzal Bulvarı No:63-1\n06105 Çankaya / Ankara',
+        'Devlet Hava Meydanları İşletmesi Genel Müdürlüğü\nEmniyet Mahallesi Mevlana Bulvarı, No:32 Etiler\n06560 YENİMAHALLE / ANKARA',
       link: 'https://maps.app.goo.gl/dqDdiFQd2pTEFQry6'
     },
     {

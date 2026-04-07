@@ -54,7 +54,7 @@ function useCountUp(end, duration = 2000, startOnView = true) {
 export default function StatsSection() {
   const stats = [
     { value: 475, suffix: '+', label: 'Aktif Üye', icon: '👥' },
-    { value: 5, suffix: '+', label: 'Yıllık Tecrübe', icon: '📅' },
+    { value: 5, suffix: '+', label: 'Yıllık Tecrübe', icon: null },
     { value: 98, suffix: '%', label: 'Memnuniyet Oranı', icon: '⭐' }
   ];
 
@@ -98,7 +98,7 @@ function StatCard({ stat, index }) {
       className={styles.statCard}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className={styles.statIcon}>{stat.icon}</div>
+      {stat.icon ? <div className={styles.statIcon}>{stat.icon}</div> : null}
       <div className={styles.statValue}>
         {count}
         <span className={styles.statSuffix}>{stat.suffix}</span>
