@@ -26,7 +26,7 @@ export default function ActivitiesSection() {
     },
     {
       image: '/images/galeri/kompresor-bakim.jpg',
-      title: 'Adı jeneratör sistemleri',
+      title: 'Jeneratör sistemleri',
       category: 'KOMPRESÖR'
     },
     {
@@ -46,12 +46,12 @@ export default function ActivitiesSection() {
     },
     {
       image: '/images/galeri/genel-saha-2.jpg',
-      title: 'Adı İklimlendirme sistemleri',
+      title: 'İklimlendirme sistemleri',
       category: 'GENEL SAHA'
     },
     {
       image: '/images/galeri/genel-saha-3.jpg',
-      title: 'Adı Isıtma sistemleri',
+      title: 'Isıtma sistemleri',
       category: 'GENEL SAHA'
     }
   ];
