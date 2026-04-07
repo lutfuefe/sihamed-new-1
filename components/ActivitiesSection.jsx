@@ -6,7 +6,7 @@ import styles from './ActivitiesSection.module.css';
 export default function ActivitiesSection() {
   const [activeFilter, setActiveFilter] = useState('TÜMÜ');
 
-  const filters = ['TÜMÜ', 'JENERATÖR BAKIMI', 'İKLİMLENDİRME', 'KOMPRESÖR', 'GENEL SAHA'];
+  const filters = ['TÜMÜ', 'JENERATÖR BAKIMI', 'İKLİMLENDİRME', 'GENEL SAHA'];
 
   const activities = [
     {
@@ -27,7 +27,7 @@ export default function ActivitiesSection() {
     {
       image: '/images/galeri/kompresor-bakim.jpg',
       title: 'Jeneratör sistemleri',
-      category: 'KOMPRESÖR'
+      category: 'GENEL SAHA'
     },
     {
       image: '/images/galeri/iklimlendirme-1.jpg',
