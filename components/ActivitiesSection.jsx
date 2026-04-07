@@ -26,7 +26,7 @@ export default function ActivitiesSection() {
     },
     {
       image: '/images/galeri/kompresor-bakim.jpg',
-      title: 'Endüstriyel Kompresör Bakımı',
+      title: 'Adı jeneratör sistemleri',
       category: 'KOMPRESÖR'
     },
     {
@@ -46,12 +46,12 @@ export default function ActivitiesSection() {
     },
     {
       image: '/images/galeri/genel-saha-2.jpg',
-      title: 'Kompresör Sistemi Kontrolü',
+      title: 'Adı İklimlendirme sistemleri',
       category: 'GENEL SAHA'
     },
     {
       image: '/images/galeri/genel-saha-3.jpg',
-      title: 'Teknik Ekipman Bakımı',
+      title: 'Adı Isıtma sistemleri',
       category: 'GENEL SAHA'
     }
   ];

@@ -5,6 +5,48 @@ import styles from './LegislationSection.module.css';
 
 export default function LegislationSection() {
   const [activeTab, setActiveTab] = useState(0);
+  const downloadableDocs = [
+    {
+      title: '657 SAYILI DEVLET MEMURLARI KANUNU',
+      href: '/docs/mevzuat/657-sayili-devlet-memurlari-kanunu.pdf'
+    },
+    {
+      title: '399 SAYILI KARARNAME',
+      href: '/docs/mevzuat/399-sayili-kararname.pdf'
+    },
+    {
+      title: 'DHMİ TEŞKİLAT YAPISI BÖLÜM 2',
+      href: '/docs/mevzuat/dhmi-teskilat-yapisi-bolum-2.pdf'
+    },
+    {
+      title: 'DHMİ KURULUŞ YAPISI GENEL BİLGİLER-1',
+      href: '/docs/mevzuat/dhmi-kurulus-yapisi-genel-bilgiler-1.pdf'
+    },
+    {
+      title: 'DHMİ KADROLU PERSONEL DİSİPLİN AMİRLERİ YÖNETMELİĞİ',
+      href: '/docs/mevzuat/dhmi-kadrolu-personel-disiplin-amirleri-yonetmeligi.pdf'
+    },
+    {
+      title: 'DEVLET HAVA MEYDANLARI İŞLETMESİ GENEL MÜDÜRLÜĞÜ (DHMİ) ANA STATÜSÜ',
+      href: '/docs/mevzuat/dhmi-ana-statusu.pdf'
+    },
+    {
+      title: '11 MAYIS 2006 TARİH VE 26165 SAYILI DEVLET MEMURLARI TEBLİĞİ',
+      href: '/docs/mevzuat/11-mayis-2006-26165-devlet-memurlari-tebligi.pdf'
+    },
+    {
+      title: '5335 SAYILI BAZI KANUN VE KANUN HÜKMÜNDE KARARNAMELERDE DEĞİŞİKLİK YAPILMASINA DAİR KANUN',
+      href: '/docs/mevzuat/5335-sayili-kanun.pdf'
+    },
+    {
+      title: '2920 SAYILI TÜRK SİVİL HAVACILIK KANUNU',
+      href: '/docs/mevzuat/2920-sayili-turk-sivil-havacilik-kanunu.pdf'
+    },
+    {
+      title: '2006-10344 DEVLET MEMURLARINA ÖDENECEK ZAM VE TAZMİNATA İLİŞKİN KARAR',
+      href: '/docs/mevzuat/2006-10344-zam-ve-tazminat-karari.pdf'
+    }
+  ];
 
   const sections = [
     {
@@ -118,6 +160,35 @@ Dernekten çıkan veya çıkarılanlar, üye kayıt defterinden silinir ve derne
                 .replace(/\n(\d+\.)/g, '<br/>$1')
             }}
           />
+        </div>
+
+        <div className={styles.downloadBox}>
+          <h3 className={styles.downloadTitle}>İndirilebilir Mevzuat Belgeleri</h3>
+          <div className={styles.downloadGrid}>
+            {downloadableDocs.map((doc) => (
+              <a
+                key={doc.href}
+                href={doc.href}
+                className={styles.downloadCard}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                <div className={styles.downloadIcon}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <path d="M12 11v6" />
+                    <path d="M9 14l3 3 3-3" />
+                  </svg>
+                </div>
+                <div className={styles.downloadMeta}>
+                  <p className={styles.downloadName}>{doc.title}</p>
+                  <span className={styles.downloadAction}>PDF indir</span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Info Box */}
