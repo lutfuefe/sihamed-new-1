@@ -27,6 +27,13 @@ export async function PUT(request) {
     return Response.json({ error: 'Aktif üye sayısı geçersiz.' }, { status: 400 });
   }
 
-  const nextStats = await writeSiteStats({ activeMembers });
-  return Response.json({ ok: true, stats: nextStats });
+  try {
+    const nextStats = await writeSiteStats({ activeMembers });
+    return Response.json({ ok: true, stats: nextStats });
+  } catch (error) {
+    return Response.json(
+      { error: error?.message || 'Üye sayısı güncellenemedi.' },
+      { status: 503 }
+    );
+  }
 }

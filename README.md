@@ -30,6 +30,13 @@ ADMIN_PASSWORD=strong-password
 ADMIN_SESSION_SECRET=change-this-long-random-secret
 ```
 
+Canlı ortamda (`Vercel`) üye sayısını kalıcı güncellemek için ek olarak KV/Redis entegrasyonu gerekir:
+
+```bash
+KV_REST_API_URL=https://...upstash.io
+KV_REST_API_TOKEN=...
+```
+
 ## 📁 Proje Yapısı
 
 ```
