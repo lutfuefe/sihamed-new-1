@@ -1,8 +1,10 @@
 'use client';
 
 import styles from './AboutSection.module.css';
+import { useActiveMembers } from '@/lib/useActiveMembers';
 
 export default function AboutSection() {
+  const activeMembers = useActiveMembers(478);
   const features = [
     {
       icon: (
@@ -24,8 +26,7 @@ export default function AboutSection() {
         </svg>
       ),
       title: 'Güçlü Ağ',
-      description:
-        '478+ aktif üye ile Türkiye\'nin en donanımlı ve en kapsamlı seyrüsefer teknik personelleri.'
+      description: `${activeMembers}+ aktif üye ile Türkiye'nin en donanımlı ve en kapsamlı seyrüsefer teknik personelleri.`
     }
   ];
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import styles from './SihamedVideoBanner.module.css';
+import { useActiveMembers } from '@/lib/useActiveMembers';
 
 /** Masaüstü: 4 klip (4. sırada logo animasyonu), sonra döngü */
 const HERO_SOURCES_DESKTOP = [
@@ -26,6 +27,7 @@ function getIsMobileViewport() {
 }
 
 export default function SihamedVideoBanner() {
+  const activeMembers = useActiveMembers(478);
   const videoRef0 = useRef(null);
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
@@ -136,7 +138,7 @@ export default function SihamedVideoBanner() {
 
           <div className={styles.statsPreview}>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>478+</span>
+              <span className={styles.statNumber}>{activeMembers}+</span>
               <span className={styles.statLabel}>Aktif Üye</span>
             </div>
             <div className={styles.statDivider}></div>

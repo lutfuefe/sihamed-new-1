@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import styles from './StatsSection.module.css';
+import { useActiveMembers } from '@/lib/useActiveMembers';
 
 function useCountUp(end, duration = 2000, startOnView = true) {
   const [count, setCount] = useState(0);
@@ -52,8 +53,9 @@ function useCountUp(end, duration = 2000, startOnView = true) {
 }
 
 export default function StatsSection() {
+  const activeMembers = useActiveMembers(478);
   const stats = [
-    { value: 478, suffix: '+', label: 'Aktif Üye', icon: '👥' },
+    { value: activeMembers, suffix: '+', label: 'Aktif Üye', icon: '👥' },
     { value: 5, suffix: '+', label: 'Yıllık Tecrübe', icon: null },
     { value: 98, suffix: '%', label: 'Memnuniyet Oranı', icon: '⭐' }
   ];

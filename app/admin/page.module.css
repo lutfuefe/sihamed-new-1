@@ -1,0 +1,82 @@
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #f3f6fa;
+  padding: 24px;
+}
+
+.card {
+  width: min(100%, 440px);
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+}
+
+.card h1 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  color: #132f4c;
+}
+
+.card p {
+  margin: 0;
+  color: #334a61;
+  line-height: 1.5;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  color: #24425f;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #ccd8e4;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 15px;
+  color: #10263d;
+  background: #fff;
+}
+
+.button,
+.buttonSecondary {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button {
+  background: #0d3b66;
+  color: #fff;
+}
+
+.buttonSecondary {
+  background: #e7edf4;
+  color: #123252;
+}
+
+.button:disabled,
+.buttonSecondary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #0f4c81;
+}

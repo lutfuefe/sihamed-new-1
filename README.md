@@ -18,6 +18,18 @@ npm run build
 npm start
 ```
 
+## 🔐 Admin Paneli (Üye Sayısı)
+
+`/admin` sayfasından giriş yapıp sadece aktif üye sayısını güncelleyebilirsiniz.
+
+Gerekli `.env.local` değişkenleri:
+
+```bash
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=strong-password
+ADMIN_SESSION_SECRET=change-this-long-random-secret
+```
+
 ## 📁 Proje Yapısı
 
 ```
