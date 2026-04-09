@@ -136,7 +136,7 @@ export default function SihamedVideoBanner() {
 
           <div className={styles.statsPreview}>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>475+</span>
+              <span className={styles.statNumber}>478+</span>
               <span className={styles.statLabel}>Aktif Üye</span>
             </div>
             <div className={styles.statDivider}></div>
