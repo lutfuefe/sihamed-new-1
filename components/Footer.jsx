@@ -15,18 +15,9 @@ export default function Footer() {
 
   const memberLinks = [
     { label: 'Üyelik Başvurusu', href: '/uyelik/basvuru' },
-    { label: 'Üye Girişi', href: '/uyelik/giris' },
     { label: 'Üyelik Avantajları', href: '/uyelik/avantajlar' },
     { label: 'Üyelik Ücretleri', href: '/uyelik/ucretler' },
     { label: 'Üye Rehberi', href: '/uyelik/rehber' }
-  ];
-
-  const resourceLinks = [
-    { label: 'Part-66 Mevzuatı', href: '/kaynaklar/part-66' },
-    { label: 'SHGM Duyuruları', href: '/kaynaklar/shgm' },
-    { label: 'Teknik Dökümanlar', href: '/kaynaklar/dokumanlar' },
-    { label: 'Sertifika Sorgulama', href: '/kaynaklar/sertifika' },
-    { label: 'SSS', href: '/sss' }
   ];
 
   return (
@@ -95,18 +86,6 @@ export default function Footer() {
               <h4 className={styles.colTitle}>Üyelik</h4>
               <ul className={styles.linkList}>
                 {memberLinks.map((link, i) => (
-                  <li key={i}>
-                    <a href={link.href}>{link.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div className={styles.linksCol}>
-              <h4 className={styles.colTitle}>Kaynaklar</h4>
-              <ul className={styles.linkList}>
-                {resourceLinks.map((link, i) => (
                   <li key={i}>
                     <a href={link.href}>{link.label}</a>
                   </li>

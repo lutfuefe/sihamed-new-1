@@ -20,10 +20,29 @@ export const metadata = {
   },
 };
 
+const siteUrl = 'https://sihamed.org.tr';
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Sivil Havacılık Mekaniği Teknik Elemanları Derneği',
+  alternateName: 'SİHAMED',
+  url: siteUrl,
+  logo: `${siteUrl}/images/sihamed-logo.png`,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
