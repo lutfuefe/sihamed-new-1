@@ -2,6 +2,8 @@ import { isAdminSessionAuthenticated } from '@/lib/server/adminAuth';
 import { readSiteStats, writeSiteStats } from '@/lib/server/siteStatsStore';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
   const stats = await readSiteStats();
