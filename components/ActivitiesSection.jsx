@@ -56,6 +56,23 @@ export default function ActivitiesSection() {
     }
   ];
 
+  const featuredNews = {
+    title: 'Derneğimizin Olağanüstü Genel Kurul Toplantısı Gerçekleştirildi',
+    date: '11.04.2026',
+    content: [
+      "Derneğimizin Olağanüstü Genel Kurul Toplantısı, 11.04.2026 tarihinde saat 10:00'da Muhsin Yazıcıoğlu Caddesi, No:55 Balgat-Çankaya/ANKARA adresinde bulunan Meyra Palace Otel'de gerçekleştirildi.",
+      'Toplantı sonucunda; Başkan yardımcılığı, yönetim kurulu ve denetim kurulu asil ve yedek üyelik görevleri yeni sahiplerine tevdi edildi. Dernek tüzüğü revize edilerek kabul edildi.',
+      'Yeni seçilen dernek yöneticilerimizi tebrik eder, görevlerinde başarılar dileriz. Üstlendikleri sorumlulukların hem kendileri hem de derneğimiz için hayırlı olmasını temenni ederiz.',
+      'Ayrıca; Olağanüstü Genel Kurul Toplantısına katılan üyelerimize teşekkür ederiz.',
+    ],
+    photos: [
+      '/images/haberler/haber-olaganustu-genel-kurul-1.png',
+      '/images/haberler/haber-olaganustu-genel-kurul-2.png',
+      '/images/haberler/haber-olaganustu-genel-kurul-3.png',
+      '/images/haberler/haber-olaganustu-genel-kurul-4.png',
+    ],
+  };
+
   const filteredActivities = activeFilter === 'TÜMÜ' 
     ? activities 
     : activities.filter(a => a.category === activeFilter);
@@ -69,14 +86,32 @@ export default function ActivitiesSection() {
             <span className={styles.labelLine}></span>
             Haberler & Duyurular
           </div>
-          <div className={styles.featuredBanner}>
-            <img
-              src="/images/featured-mar9-sihamed-banner.png"
-              alt="9 Mart Sivil Havacılık Mekaniği Teknik Elemanları Günü — SİHAMED kutlama görseli"
-              className={styles.featuredBannerImg}
-              loading="lazy"
-              decoding="async"
-            />
+
+          <div className={styles.newsCard}>
+            <div className={styles.newsHeader}>
+              <span className={styles.newsDate}>{featuredNews.date}</span>
+              <h3 className={styles.newsTitle}>{featuredNews.title}</h3>
+            </div>
+
+            <div className={styles.newsBody}>
+              {featuredNews.content.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+
+            <div className={styles.newsGallery}>
+              {featuredNews.photos.map((photo, index) => (
+                <figure key={photo} className={styles.newsPhotoWrap}>
+                  <img
+                    src={photo}
+                    alt={`Olaganustu Genel Kurul Toplantisi fotograflari ${index + 1}`}
+                    className={styles.newsPhoto}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </div>
