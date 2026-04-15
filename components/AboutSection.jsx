@@ -5,6 +5,17 @@ import { useActiveMembers } from '@/lib/useActiveMembers';
 
 export default function AboutSection() {
   const activeMembers = useActiveMembers(478);
+  const missionVision = [
+    {
+      title: 'Misyon',
+      text: 'Sürdürülebilir ve güvenli hava seyrüsefer hizmetleri için, havalimanlarında 7/24 çalışan makina personellerinin mesleki haklarının ve çalışma koşullarının iyileştirilmesine katkıda bulunmak, sektördeki paydaşlarımız ile fikir alışverişinde bulunmak, eğitim ve konferanslar düzenlemek, sosyal faaliyetlerde bulunmak ve tüm bunların sonucunda donanımlı yetişmiş makina teknik personelleri ile havacılık sektörüne gereken desteği sağlamak amaç edinilmiştir.'
+    },
+    {
+      title: 'Vizyon',
+      text: 'Hava seyrüsefer hizmetlerinin devamlılığı için fedakarca emek veren makina teknik personellerinin büyük desteğiyle kurulan Sivil Havacılık Mekaniği Teknik Elemanları Derneği, günden güne büyüyen milli havacılığımıza kaliteli, güvenilir ve emniyetli hizmet vermeyi, mesleki alanlarda ileri teknolojileri kullanmayı, meslekte uzmanlaşmayı ve stratejik düşünebilmeyi düstur edinmiştir.'
+    }
+  ];
+
   const features = [
     {
       icon: (
@@ -46,10 +57,44 @@ export default function AboutSection() {
           </h2>
           
           <p className={styles.description}>
-            Dernek (SİHAMED), Sivil Havacılık Mekaniği teknik elemanlarını bir araya getirerek
-            aralarında yardımlaşmayı sağlamak. Mesleki sorunlarına derneğin imkanları dahilinde
-            çözümler aramak amacıyla kurulmuştur.
+            Devlet Hava Meydanları İşletmesi Genel Müdürlüğü bünyesinde, merkez teşkilatı ile Türkiye
+            genelindeki havalimanlarında görev yapan makina teknik personelleri, havacılık
+            faaliyetlerinin emniyetli, düzenli ve kesintisiz bir şekilde sürdürülebilmesi amacıyla uzun
+            yıllardır büyük bir sorumluluk ve özveriyle hizmet vermektedir.
+            <br />
+            <br />
+            Bu çerçevede; makina teknik çalışanlarının mesleki hak ve menfaatlerinin korunması,
+            havacılık mekaniği teknik hizmetlerinin geliştirilmesi, mesleki bilgi ve becerilerinin
+            artırılması ve ulusal ile uluslararası platformlarda temsil edilmesi amacıyla, 09 Mart
+            2021 tarihinde Sivil Havacılık Mekaniği Teknik Elemanları Derneği (SİHAMED)
+            kurulmuştur.
+            <br />
+            <br />
+            Derneğimiz; havacılık mekaniği alanındaki bilimsel ve teknolojik gelişmeleri yakından
+            takip ederek üyeleriyle paylaşmayı, eğitim ve bilgilendirme faaliyetleri aracılığıyla
+            mesleki gelişimi desteklemeyi ve sektörün ihtiyaçları doğrultusunda katkı sunmayı temel
+            görevleri arasında kabul etmektedir.
+            <br />
+            <br />
+            Bu doğrultuda, havacılık sektörünün emniyet ve sürekliliğine katkı sağlamak, makina
+            teknik çalışanlarının mesleklerini en üst düzeyde icra etmelerine destek olmak ve mesleki
+            standartların geliştirilmesine katkıda bulunmak amacıyla faaliyetlerimiz kararlılıkla
+            sürdürülmektedir.
+            <br />
+            <br />
+            Saygılarımızla,
+            <br />
+            SİHAMED
           </p>
+
+          <div className={styles.missionVisionGrid}>
+            {missionVision.map((item) => (
+              <article key={item.title} className={styles.missionVisionCard}>
+                <h3 className={styles.missionVisionTitle}>{item.title}</h3>
+                <p className={styles.missionVisionText}>{item.text}</p>
+              </article>
+            ))}
+          </div>
 
           <div className={styles.features}>
             {features.map((feature, index) => (

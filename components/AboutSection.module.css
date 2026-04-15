@@ -65,6 +65,38 @@
   margin-bottom: 2rem;
 }
 
+/* Mission / Vision */
+.missionVisionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.missionVisionCard {
+  background: #fff;
+  border: 1px solid var(--primary-100);
+  border-radius: 1rem;
+  padding: 1.1rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.missionVisionTitle {
+  margin: 0 0 0.55rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary-700);
+}
+
+.missionVisionText {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--neutral-600);
+}
+
 /* Features */
 .features {
   display: flex;
@@ -389,6 +421,10 @@
   .container {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+
+  .missionVisionGrid {
+    grid-template-columns: 1fr;
   }
 
   .visual {
