@@ -56,22 +56,35 @@ export default function ActivitiesSection() {
     }
   ];
 
-  const featuredNews = {
-    title: 'Derneğimizin Olağanüstü Genel Kurul Toplantısı Gerçekleştirildi',
-    date: '11.04.2026',
-    content: [
-      "Derneğimizin Olağanüstü Genel Kurul Toplantısı, 11.04.2026 tarihinde saat 10:00'da Muhsin Yazıcıoğlu Caddesi, No:55 Balgat-Çankaya/ANKARA adresinde bulunan Meyra Palace Otel'de gerçekleştirildi.",
-      'Toplantı sonucunda; Başkan yardımcılığı, yönetim kurulu ve denetim kurulu asil ve yedek üyelik görevleri yeni sahiplerine tevdi edildi. Dernek tüzüğü revize edilerek kabul edildi.',
-      'Yeni seçilen dernek yöneticilerimizi tebrik eder, görevlerinde başarılar dileriz. Üstlendikleri sorumlulukların hem kendileri hem de derneğimiz için hayırlı olmasını temenni ederiz.',
-      'Ayrıca; Olağanüstü Genel Kurul Toplantısına katılan üyelerimize teşekkür ederiz.',
-    ],
-    photos: [
-      '/images/haberler/haber-olaganustu-genel-kurul-1.png',
-      '/images/haberler/haber-olaganustu-genel-kurul-2.png',
-      '/images/haberler/haber-olaganustu-genel-kurul-3.png',
-      '/images/haberler/haber-olaganustu-genel-kurul-4.png',
-    ],
-  };
+  const featuredNewsList = [
+    {
+      title: 'Meclisimizin 106. Kuruluş Yıl Dönümü ve 23 Nisan Kutlaması',
+      date: '23.04.2026',
+      content: [
+        "Meclisimizin 106. kuruluş yıl dönümünü ve tüm dünya çocuklarının 23 Nisan Ulusal Egemenlik ve Çocuk Bayramı'nı kutluyoruz.",
+        'Başta Gazi Mustafa Kemal Atatürk olmak üzere; aziz şehitlerimizi rahmetle, kahraman gazilerimizi minnetle yad ediyoruz.',
+      ],
+      photos: ['/images/haberler/haber-23-nisan-2026.png'],
+      photoAltPrefix: '23 Nisan Ulusal Egemenlik ve Çocuk Bayramı duyuru görseli',
+    },
+    {
+      title: 'Derneğimizin Olağanüstü Genel Kurul Toplantısı Gerçekleştirildi',
+      date: '11.04.2026',
+      content: [
+        "Derneğimizin Olağanüstü Genel Kurul Toplantısı, 11.04.2026 tarihinde saat 10:00'da Muhsin Yazıcıoğlu Caddesi, No:55 Balgat-Çankaya/ANKARA adresinde bulunan Meyra Palace Otel'de gerçekleştirildi.",
+        'Toplantı sonucunda; Başkan yardımcılığı, yönetim kurulu ve denetim kurulu asil ve yedek üyelik görevleri yeni sahiplerine tevdi edildi. Dernek tüzüğü revize edilerek kabul edildi.',
+        'Yeni seçilen dernek yöneticilerimizi tebrik eder, görevlerinde başarılar dileriz. Üstlendikleri sorumlulukların hem kendileri hem de derneğimiz için hayırlı olmasını temenni ederiz.',
+        'Ayrıca; Olağanüstü Genel Kurul Toplantısına katılan üyelerimize teşekkür ederiz.',
+      ],
+      photos: [
+        '/images/haberler/haber-olaganustu-genel-kurul-1.png',
+        '/images/haberler/haber-olaganustu-genel-kurul-2.png',
+        '/images/haberler/haber-olaganustu-genel-kurul-3.png',
+        '/images/haberler/haber-olaganustu-genel-kurul-4.png',
+      ],
+      photoAltPrefix: 'Olağanüstü Genel Kurul Toplantısı fotoğrafları',
+    },
+  ];
 
   const filteredActivities = activeFilter === 'TÜMÜ' 
     ? activities 
@@ -87,31 +100,35 @@ export default function ActivitiesSection() {
             Haberler & Duyurular
           </div>
 
-          <div className={styles.newsCard}>
-            <div className={styles.newsHeader}>
-              <span className={styles.newsDate}>{featuredNews.date}</span>
-              <h3 className={styles.newsTitle}>{featuredNews.title}</h3>
-            </div>
+          <div className={styles.newsList}>
+            {featuredNewsList.map((newsItem) => (
+              <article key={newsItem.title} className={styles.newsCard}>
+                <div className={styles.newsHeader}>
+                  <span className={styles.newsDate}>{newsItem.date}</span>
+                  <h3 className={styles.newsTitle}>{newsItem.title}</h3>
+                </div>
 
-            <div className={styles.newsBody}>
-              {featuredNews.content.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
+                <div className={styles.newsBody}>
+                  {newsItem.content.map((paragraph, index) => (
+                    <p key={`${newsItem.title}-paragraph-${index}`}>{paragraph}</p>
+                  ))}
+                </div>
 
-            <div className={styles.newsGallery}>
-              {featuredNews.photos.map((photo, index) => (
-                <figure key={photo} className={styles.newsPhotoWrap}>
-                  <img
-                    src={photo}
-                    alt={`Olaganustu Genel Kurul Toplantisi fotograflari ${index + 1}`}
-                    className={styles.newsPhoto}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-              ))}
-            </div>
+                <div className={styles.newsGallery}>
+                  {newsItem.photos.map((photo, index) => (
+                    <figure key={photo} className={styles.newsPhotoWrap}>
+                      <img
+                        src={photo}
+                        alt={`${newsItem.photoAltPrefix} ${index + 1}`}
+                        className={styles.newsPhoto}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>

@@ -68,6 +68,11 @@
   padding: 1.75rem;
 }
 
+.newsList {
+  display: grid;
+  gap: 1.25rem;
+}
+
 .newsHeader {
   margin-bottom: 1rem;
 }
