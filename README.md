@@ -30,12 +30,23 @@ ADMIN_PASSWORD=strong-password
 ADMIN_SESSION_SECRET=change-this-long-random-secret
 ```
 
-Canlı ortamda (`Vercel`) üye sayısını kalıcı güncellemek için ek olarak KV/Redis entegrasyonu gerekir:
+Üye sayısını kalıcı tutmak için PostgreSQL bağlantısı gerekir:
 
 ```bash
-KV_REST_API_URL=https://...upstash.io
-KV_REST_API_TOKEN=...
+DATABASE_URL=postgresql://admin:admin123@localhost:5432/sihamed2
 ```
+
+## 🐳 Docker ile Çalıştırma (Port 3001)
+
+```bash
+# Proje kökünde
+docker compose up --build -d
+```
+
+Uygulama: `http://localhost:3001`  
+PostgreSQL: `localhost:5432`  
+
+İlk açılışta `scripts/init-db.sql` dosyası çalışır ve `site_stats` tablosunu oluşturur.
 
 ## 📁 Proje Yapısı
 
