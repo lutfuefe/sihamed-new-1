@@ -18,7 +18,7 @@ function escapeHtml(s) {
 
 export async function POST(request) {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.MEMBERSHIP_NOTIFY_EMAIL || 'sihamed.dhmi@gmail.com';
+  const to = process.env.MEMBERSHIP_NOTIFY_EMAIL || 'sihameddernek@gmail.com';
   const from =
     process.env.RESEND_FROM_EMAIL ||
     'SİHAMED Başvuru <onboarding@resend.dev>';

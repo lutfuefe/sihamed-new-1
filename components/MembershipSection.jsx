@@ -126,11 +126,6 @@ export default function MembershipSection() {
           {/* Application Form */}
           <div className={styles.formWrapper}>
             <div className={styles.formCard}>
-              <h3 className={styles.formTitle}>Üyelik Başvurusu</h3>
-              <p className={styles.formDesc}>
-                Formu doldurun, başvurunuzu değerlendirelim
-              </p>
-
               <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formGroup}>
                   <label htmlFor="name">Ad Soyad *</label>

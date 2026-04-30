@@ -66,8 +66,8 @@ export default function ContactSection() {
         </svg>
       ),
       title: 'E-posta',
-      content: 'sihamed.dhmi@gmail.com',
-      link: 'mailto:sihamed.dhmi@gmail.com'
+      content: 'sihameddernek@gmail.com',
+      link: 'mailto:sihameddernek@gmail.com'
     },
     {
       icon: (
