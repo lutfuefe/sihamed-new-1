@@ -214,6 +214,57 @@ export default function AdminPage() {
     setAnnouncementItems((prev) => prev.filter((_, i) => i !== index));
   }
 
+  function removePhoto(announcementIndex, photoIndex) {
+    setAnnouncementItems((prev) =>
+      prev.map((item, i) =>
+        i === announcementIndex
+          ? { ...item, photos: item.photos.filter((_, j) => j !== photoIndex) }
+          : item
+      )
+    );
+  }
+
+  async function handleAnnouncementFilesSelected(index, event) {
+    const input = event.target;
+    const files = Array.from(input.files || []);
+    input.value = '';
+    if (!files.length) return;
+
+    setIsSubmitting(true);
+    setMessage('');
+
+    const fd = new FormData();
+    files.forEach((f) => fd.append('file', f));
+
+    try {
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: fd,
+        credentials: 'include',
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setMessage(data?.error || 'Yükleme başarısız.');
+        if (res.status === 401) setAuthenticated(false);
+        return;
+      }
+      if (Array.isArray(data?.paths)) {
+        setAnnouncementItems((prev) =>
+          prev.map((item, i) =>
+            i === index ? { ...item, photos: [...item.photos, ...data.paths] } : item
+          )
+        );
+        setMessage(
+          `${data.paths.length} görsel sunucuya kaydedildi. Listeyi kontrol edip «Duyuruları kaydet» ile veritabanına yazın.`
+        );
+      }
+    } catch {
+      setMessage('Sunucuya bağlanılamadı.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   if (isLoading) {
     return <main className={styles.wrapper}>Yükleniyor...</main>;
   }
@@ -324,8 +375,9 @@ export default function AdminPage() {
             ) : (
               <div className={styles.newsPanel}>
                 <p className={styles.hint}>
-                  Görselleri <code>public/images/...</code> altına yükleyip burada
-                  yolunu yazın. Paragrafları boş satırla ayırın.
+                  Görselleri aşağıdan seçerek yükleyin; yollar duyuruya eklenir.
+                  «Duyuruları kaydet» ile PostgreSQL&apos;e kaydedilir. Paragrafları
+                  boş satırla ayırın.
                 </p>
                 {!announcementsLoaded ? (
                   <p>Duyurular yükleniyor…</p>
@@ -413,8 +465,41 @@ export default function AdminPage() {
                               }
                             />
                           </label>
+                          <div className={styles.label}>
+                            Görseller
+                            <label className={styles.filePick}>
+                              <input
+                                type="file"
+                                accept="image/jpeg,image/png,image/webp,image/gif"
+                                multiple
+                                disabled={isSubmitting}
+                                onChange={(e) => handleAnnouncementFilesSelected(index, e)}
+                              />
+                              <span>Görsel seç (birden fazla; JPEG, PNG, WebP, GIF)</span>
+                            </label>
+                            {item.photos.length ? (
+                              <ul className={styles.photoList}>
+                                {item.photos.map((path, pi) => (
+                                  <li key={`${path}-${pi}`} className={styles.photoRow}>
+                                    <code className={styles.photoPath}>{path}</code>
+                                    <button
+                                      type="button"
+                                      className={styles.buttonDangerGhost}
+                                      onClick={() => removePhoto(index, pi)}
+                                      disabled={isSubmitting}
+                                    >
+                                      Kaldır
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <p className={styles.photoEmpty}>Henüz görsel yok.</p>
+                            )}
+                          </div>
                           <label className={styles.label}>
-                            Görsel yolları (satır başına bir yol)
+                            Yollar (yüklenenler otomatik eklenir; isterseniz satır başına
+                            manuel yol yazın)
                             <textarea
                               className={styles.textareaMono}
                               rows={4}
