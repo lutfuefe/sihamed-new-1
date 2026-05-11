@@ -8,12 +8,12 @@ services:
       - postgres-db
     env_file:
       - .env
+    # ADMIN_* değişkenleri sadece env_file (.env) üzerinden verilsin.
+    # Aksi halde ${ADMIN_...} Compose aşamasında boş kalırsa env_file'daki
+    # değerlerin üzerine boş string yazılır ve /admin "Ayar eksik" gösterir.
     environment:
       DATABASE_URL: postgresql://admin:admin123@postgres-db:5432/sihamed2
       PORT: 3001
-      ADMIN_USERNAME: ${ADMIN_USERNAME}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
-      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET}
     ports:
       - '3001:3001'
     restart: unless-stopped
