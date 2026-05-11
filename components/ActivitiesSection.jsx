@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { DEFAULT_ANNOUNCEMENTS } from '@/lib/announcementsDefaults';
 import styles from './ActivitiesSection.module.css';
 
 export default function ActivitiesSection() {
   const [activeFilter, setActiveFilter] = useState('TÜMÜ');
+  const [featuredNewsList, setFeaturedNewsList] = useState(DEFAULT_ANNOUNCEMENTS);
+  const [newsReady, setNewsReady] = useState(false);
 
   const filters = ['TÜMÜ', 'JENERATÖR BAKIMI', 'İKLİMLENDİRME', 'GENEL SAHA'];
 
@@ -12,83 +15,76 @@ export default function ActivitiesSection() {
     {
       image: '/images/galeri/jenerator-bakim-1.jpg',
       title: 'Jeneratör Kontrol Paneli Bakımı',
-      category: 'JENERATÖR BAKIMI'
+      category: 'JENERATÖR BAKIMI',
     },
     {
       image: '/images/galeri/jenerator-bakim-2.jpg',
       title: 'Perkins Motor Bakımı',
-      category: 'JENERATÖR BAKIMI'
+      category: 'JENERATÖR BAKIMI',
     },
     {
       image: '/images/galeri/jenerator-bakim-3.jpg',
       title: 'Cummins Jeneratör Bakımı',
-      category: 'JENERATÖR BAKIMI'
+      category: 'JENERATÖR BAKIMI',
     },
     {
       image: '/images/galeri/kompresor-bakim.jpg',
       title: 'Jeneratör sistemleri',
-      category: 'GENEL SAHA'
+      category: 'GENEL SAHA',
     },
     {
       image: '/images/galeri/iklimlendirme-1.jpg',
       title: 'Klima Sistemi Bakımı',
-      category: 'İKLİMLENDİRME'
+      category: 'İKLİMLENDİRME',
     },
     {
       image: '/images/galeri/iklimlendirme-2.jpg',
       title: 'ACS Havalandırma Bakımı',
-      category: 'İKLİMLENDİRME'
+      category: 'İKLİMLENDİRME',
     },
     {
       image: '/images/galeri/genel-saha-1.jpg',
       title: 'Saha Kontrol İşlemleri',
-      category: 'GENEL SAHA'
+      category: 'GENEL SAHA',
     },
     {
       image: '/images/galeri/genel-saha-2.jpg',
       title: 'İklimlendirme sistemleri',
-      category: 'GENEL SAHA'
+      category: 'GENEL SAHA',
     },
     {
       image: '/images/galeri/genel-saha-3.jpg',
       title: 'Isıtma sistemleri',
-      category: 'GENEL SAHA'
-    }
-  ];
-
-  const featuredNewsList = [
-    {
-      title: 'Meclisimizin 106. Kuruluş Yıl Dönümü ve 23 Nisan Kutlaması',
-      date: '23.04.2026',
-      content: [
-        "Meclisimizin 106. kuruluş yıl dönümünü ve tüm dünya çocuklarının 23 Nisan Ulusal Egemenlik ve Çocuk Bayramı'nı kutluyoruz.",
-        'Başta Gazi Mustafa Kemal Atatürk olmak üzere; aziz şehitlerimizi rahmetle, kahraman gazilerimizi minnetle yad ediyoruz.',
-      ],
-      photos: ['/images/haberler/haber-23-nisan-2026.png'],
-      photoAltPrefix: '23 Nisan Ulusal Egemenlik ve Çocuk Bayramı duyuru görseli',
-    },
-    {
-      title: 'Derneğimizin Olağanüstü Genel Kurul Toplantısı Gerçekleştirildi',
-      date: '11.04.2026',
-      content: [
-        "Derneğimizin Olağanüstü Genel Kurul Toplantısı, 11.04.2026 tarihinde saat 10:00'da Muhsin Yazıcıoğlu Caddesi, No:55 Balgat-Çankaya/ANKARA adresinde bulunan Meyra Palace Otel'de gerçekleştirildi.",
-        'Toplantı sonucunda; Başkan yardımcılığı, yönetim kurulu ve denetim kurulu asil ve yedek üyelik görevleri yeni sahiplerine tevdi edildi. Dernek tüzüğü revize edilerek kabul edildi.',
-        'Yeni seçilen dernek yöneticilerimizi tebrik eder, görevlerinde başarılar dileriz. Üstlendikleri sorumlulukların hem kendileri hem de derneğimiz için hayırlı olmasını temenni ederiz.',
-        'Ayrıca; Olağanüstü Genel Kurul Toplantısına katılan üyelerimize teşekkür ederiz.',
-      ],
-      photos: [
-        '/images/haberler/haber-olaganustu-genel-kurul-1.png',
-        '/images/haberler/haber-olaganustu-genel-kurul-2.png',
-        '/images/haberler/haber-olaganustu-genel-kurul-3.png',
-        '/images/haberler/haber-olaganustu-genel-kurul-4.png',
-      ],
-      photoAltPrefix: 'Olağanüstü Genel Kurul Toplantısı fotoğrafları',
+      category: 'GENEL SAHA',
     },
   ];
 
-  const filteredActivities = activeFilter === 'TÜMÜ' 
-    ? activities 
-    : activities.filter(a => a.category === activeFilter);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/announcements', { cache: 'no-store' });
+        if (!res.ok) throw new Error('announcements');
+        const data = await res.json();
+        if (cancelled || !Array.isArray(data?.items)) return;
+        setFeaturedNewsList(data.items);
+      } catch {
+        if (!cancelled) {
+          setFeaturedNewsList(DEFAULT_ANNOUNCEMENTS);
+        }
+      } finally {
+        if (!cancelled) setNewsReady(true);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const filteredActivities =
+    activeFilter === 'TÜMÜ'
+      ? activities
+      : activities.filter((a) => a.category === activeFilter);
 
   return (
     <section className={styles.activities} id="faaliyetler">
@@ -100,36 +96,45 @@ export default function ActivitiesSection() {
             Haberler & Duyurular
           </div>
 
-          <div className={styles.newsList}>
-            {featuredNewsList.map((newsItem) => (
-              <article key={newsItem.title} className={styles.newsCard}>
-                <div className={styles.newsHeader}>
-                  <span className={styles.newsDate}>{newsItem.date}</span>
-                  <h3 className={styles.newsTitle}>{newsItem.title}</h3>
-                </div>
+          {!newsReady ? (
+            <p className={styles.newsLoading}>Duyurular yükleniyor…</p>
+          ) : featuredNewsList.length === 0 ? (
+            <p className={styles.newsEmpty}>Şu an yayında duyuru bulunmuyor.</p>
+          ) : (
+            <div className={styles.newsList}>
+              {featuredNewsList.map((newsItem, newsIndex) => (
+                <article
+                  key={`${newsItem.title}-${newsItem.date}-${newsIndex}`}
+                  className={styles.newsCard}
+                >
+                  <div className={styles.newsHeader}>
+                    <span className={styles.newsDate}>{newsItem.date}</span>
+                    <h3 className={styles.newsTitle}>{newsItem.title}</h3>
+                  </div>
 
-                <div className={styles.newsBody}>
-                  {newsItem.content.map((paragraph, index) => (
-                    <p key={`${newsItem.title}-paragraph-${index}`}>{paragraph}</p>
-                  ))}
-                </div>
+                  <div className={styles.newsBody}>
+                    {newsItem.content.map((paragraph, index) => (
+                      <p key={`${newsItem.title}-paragraph-${index}`}>{paragraph}</p>
+                    ))}
+                  </div>
 
-                <div className={styles.newsGallery}>
-                  {newsItem.photos.map((photo, index) => (
-                    <figure key={photo} className={styles.newsPhotoWrap}>
-                      <img
-                        src={photo}
-                        alt={`${newsItem.photoAltPrefix} ${index + 1}`}
-                        className={styles.newsPhoto}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </figure>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
+                  <div className={styles.newsGallery}>
+                    {newsItem.photos.map((photo, index) => (
+                      <figure key={photo} className={styles.newsPhotoWrap}>
+                        <img
+                          src={photo}
+                          alt={`${newsItem.photoAltPrefix} ${index + 1}`}
+                          className={styles.newsPhoto}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

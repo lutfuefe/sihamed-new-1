@@ -1,13 +1,6 @@
-CREATE TABLE IF NOT EXISTS site_stats (
-  id INTEGER PRIMARY KEY,
-  active_members INTEGER NOT NULL CHECK (active_members >= 0)
-);
+-- Mevcut PostgreSQL veritabanına duyuru tablosunu eklemek için (bir kez çalıştırın).
+-- Örnek: docker compose exec -T postgres-db psql -U admin -d sihamed2 -f - < scripts/migrate-announcements.sql
 
-INSERT INTO site_stats (id, active_members)
-VALUES (1, 478)
-ON CONFLICT (id) DO NOTHING;
-
--- Haberler & Duyurular (admin panelinden güncellenir)
 CREATE TABLE IF NOT EXISTS announcements (
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,

@@ -73,6 +73,14 @@
   gap: 1.25rem;
 }
 
+.newsLoading,
+.newsEmpty {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 .newsHeader {
   margin-bottom: 1rem;
 }

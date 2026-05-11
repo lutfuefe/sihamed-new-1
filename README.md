@@ -43,6 +43,22 @@ DATABASE_URL=postgresql://admin:admin123@localhost:5432/sihamed2
 docker compose up --build -d
 ```
 
+### Sunucuda güncelleme (push sonrası)
+
+Sunucuda önce kodu çekin, sonra imajı yeniden derleyip **web konteynerini yeniden oluşturun**. Aksi halde eski konteyner çalışmaya devam eder (`docker ps` içinde “Created” tarihi değişmez).
+
+```bash
+cd /path/to/sihamed-new-1   # projenin olduğu klasör
+git pull origin main
+
+# Önbellek yüzünden eski katman kalıyorsa:
+docker compose build --no-cache web
+
+docker compose up -d --force-recreate web
+```
+
+Özet: `git pull` olmadan sadece `docker compose up --build` genelde eski kaynak kodla derlenir veya mevcut konteyner aynı kalır.
+
 Uygulama: `http://localhost:3001`  
 PostgreSQL: `localhost:5432`  
 
