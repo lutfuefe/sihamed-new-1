@@ -11,8 +11,8 @@ services:
     # ADMIN_* değişkenleri sadece env_file (.env) üzerinden verilsin.
     # Aksi halde ${ADMIN_...} Compose aşamasında boş kalırsa env_file'daki
     # değerlerin üzerine boş string yazılır ve /admin "Ayar eksik" gösterir.
+    # DATABASE_URL burada sabit verilirse .env içindeki satır konteynere HİÇ yansımaz.
     environment:
-      DATABASE_URL: postgresql://admin:admin123@postgres-db:5432/sihamed2
       PORT: 3001
     ports:
       - '3001:3001'
