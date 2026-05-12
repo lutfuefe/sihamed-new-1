@@ -6,14 +6,17 @@ const nextConfig = {
     domains: ['images.unsplash.com', 'images.pexels.com'],
     unoptimized: false,
   },
-  // Nginx /images/ isteğini Node'a vermeyebilir; yüklenen görselleri Next üzerinden servis et
+  // public/ kontrolünden ÖNCE yönlendir; runtime'da eklenen dosyalar yoksa
+  // varsayılan rewrite sırası 404 veriyordu (beforeFiles şart).
   async rewrites() {
-    return [
-      {
-        source: '/images/haberler/yuklenen/:path*',
-        destination: '/api/static/yuklenen/:path*',
-      },
-    ];
+    return {
+      beforeFiles: [
+        {
+          source: '/images/haberler/yuklenen/:path*',
+          destination: '/api/static/yuklenen/:path*',
+        },
+      ],
+    };
   },
   // Video dosyaları için
   async headers() {
