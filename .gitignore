@@ -45,3 +45,10 @@ coverage/
 *.pid.lock
 
 # Not ignored: public/videos/*.mp4 (hero videoları repoda tutulur)
+
+# Admin panelinden yüklenen görseller (diskte kalır, repoya gitmez)
+public/images/haberler/yuklenen/*
+!public/images/haberler/yuklenen/.gitkeep
+
+# Sunucuya özel docker ayarı — buraya yazın; git pull çakışması olmaz
+docker-compose.override.yml
