@@ -7,7 +7,14 @@ export const revalidate = 0;
 
 export async function GET() {
   const items = await readAnnouncements();
-  return Response.json({ items });
+  return Response.json(
+    { items },
+    {
+      headers: {
+        'Cache-Control': 'no-store, max-age=0, must-revalidate',
+      },
+    }
+  );
 }
 
 export async function PUT(request) {
