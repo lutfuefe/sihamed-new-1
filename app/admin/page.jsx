@@ -130,7 +130,13 @@ export default function AdminPage() {
         return;
       }
 
-      setMessage('Aktif üye sayısı güncellendi.');
+      if (data?.persistedToFile) {
+        setMessage(
+          'Veritabanına yazılamadı; sayı geçici olarak sunucu dosyasına kaydedildi. PostgreSQL kullanıcı adı/parolası ile DATABASE_URL aynı mı kontrol edin (docker exec ... psql şifre sormadan bağlanabilir). Düzeltince tekrar Kaydet.'
+        );
+      } else {
+        setMessage('Aktif üye sayısı güncellendi.');
+      }
     } catch {
       setMessage('Sunucuya bağlanılamadı.');
     } finally {

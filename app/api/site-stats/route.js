@@ -28,8 +28,8 @@ export async function PUT(request) {
   }
 
   try {
-    const nextStats = await writeSiteStats({ activeMembers });
-    return Response.json({ ok: true, stats: nextStats });
+    const { stats, persistedToFile } = await writeSiteStats({ activeMembers });
+    return Response.json({ ok: true, stats, persistedToFile });
   } catch (error) {
     return Response.json(
       { error: error?.message || 'Üye sayısı güncellenemedi.' },
