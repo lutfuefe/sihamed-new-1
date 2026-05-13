@@ -1,8 +1,92 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { DEFAULT_ANNOUNCEMENTS } from '@/lib/announcementsDefaults';
 import styles from './ActivitiesSection.module.css';
+
+const CAROUSEL_INTERVAL_MS = 5500;
+
+function NewsPhotoCarousel({ photos, altPrefix }) {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const count = photos.length;
+
+  const go = useCallback(
+    (dir) => {
+      if (count <= 1) return;
+      setIndex((i) => (i + dir + count) % count);
+    },
+    [count]
+  );
+
+  useEffect(() => {
+    if (count <= 1 || paused) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % count);
+    }, CAROUSEL_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, [count, paused]);
+
+  if (count === 0) return null;
+
+  return (
+    <div
+      className={styles.newsCarousel}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className={styles.newsCarouselViewport}>
+        {count > 1 && (
+          <>
+            <button
+              type="button"
+              className={`${styles.newsCarouselArrow} ${styles.newsCarouselArrowPrev}`}
+              aria-label="Önceki görsel"
+              onClick={() => go(-1)}
+            />
+            <button
+              type="button"
+              className={`${styles.newsCarouselArrow} ${styles.newsCarouselArrowNext}`}
+              aria-label="Sonraki görsel"
+              onClick={() => go(1)}
+            />
+          </>
+        )}
+        <div
+          className={styles.newsCarouselTrack}
+          style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+        >
+          {photos.map((photo, i) => (
+            <figure key={`${photo}-${i}`} className={styles.newsCarouselSlide}>
+              <img
+                src={photo}
+                alt={`${altPrefix} ${i + 1}`}
+                className={styles.newsCarouselImg}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+      {count > 1 && (
+        <div className={styles.newsCarouselDots} role="tablist" aria-label="Duyuru görselleri">
+          {photos.map((_, i) => (
+            <button
+              key={`dot-${i}`}
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              className={`${styles.newsCarouselDot} ${i === index ? styles.newsCarouselDotActive : ''}`}
+              onClick={() => setIndex(i)}
+              aria-label={`Görsel ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ActivitiesSection() {
   const [activeFilter, setActiveFilter] = useState('TÜMÜ');
@@ -118,19 +202,10 @@ export default function ActivitiesSection() {
                     ))}
                   </div>
 
-                  <div className={styles.newsGallery}>
-                    {newsItem.photos.map((photo, index) => (
-                      <figure key={photo} className={styles.newsPhotoWrap}>
-                        <img
-                          src={photo}
-                          alt={`${newsItem.photoAltPrefix} ${index + 1}`}
-                          className={styles.newsPhoto}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </figure>
-                    ))}
-                  </div>
+                  <NewsPhotoCarousel
+                    photos={newsItem.photos}
+                    altPrefix={newsItem.photoAltPrefix}
+                  />
                 </article>
               ))}
             </div>
